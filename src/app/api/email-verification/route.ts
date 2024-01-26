@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import User from "../../../models/users";
 import Connection from "../../../config/conn";
-import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 
 Connection();
@@ -21,9 +20,9 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ message: "Invalid OTP" });
         }
         else {
-            
+            const updateUser = await User.findOneAndUpdate({ isVerified: true });
+            return NextResponse.json({ message: "OTP Verified Successfully" });
         }
-
     } catch (error) {
         console.log(error);
     }

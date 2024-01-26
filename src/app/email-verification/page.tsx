@@ -43,7 +43,7 @@ const page = () => {
                     position: "top-right"
                 });
                 setTimeout(() => {
-                    router.push("/create-password");
+                    router.push("/login");
                 }, 1500);
             }
             else {
