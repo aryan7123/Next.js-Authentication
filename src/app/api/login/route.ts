@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
             }
             const token = jwt.sign(userToken, "user_token");
             
-            const response = NextResponse.json({ message: "You have logged in successfully", user: updateUser });
+            const response = NextResponse.json({ message: "You have logged in successfully" });
             response.cookies.set("user_token", token, { httpOnly: true });
             return response;
         }
