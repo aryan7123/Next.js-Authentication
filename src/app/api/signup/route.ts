@@ -56,13 +56,13 @@ export async function POST(request: NextRequest) {
                         text: "Thank you for using our services! For the verification of your account, we require you to verify your identity with a one-time password (OTP).<br>",
                         html: `
                         Dear ${firstName} ${lastName},
-                        <br>
+                        <br><br>
                         Note that is OTP will be valid only for a limited period of time
-                        <br>
+                        <br><br>
                         Your Verification OTP: ${otp}
-                        <br>
+                        <br><br>
                         If you did not request a verification, please ignore this email.
-                        <br>
+                        <br><br>
                         Thank you for using our service.
                         `
                     });
