@@ -10,7 +10,9 @@ export async function GET(request: NextRequest) {
     const token = request.cookies.get("user_token")?.value || "";
 
     const user = jwt.verify(token, "user_token");
+
     const selectUser = await User.findById(user.id);
+    
     return NextResponse.json({ user: selectUser });
   } 
   catch (error) {
