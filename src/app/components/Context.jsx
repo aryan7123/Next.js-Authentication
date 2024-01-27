@@ -6,6 +6,16 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
+    }
+
+    const handleShowConfirmPassword = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    }
 
     const handleLoader = () => {
         setTimeout(() => {
@@ -16,9 +26,13 @@ const AppProvider = ({ children }) => {
    return(
     <AppContext.Provider
         value={{
-            loading, 
+            loading,
+            showPassword,
+            showConfirmPassword,
             setLoading,
-            handleLoader
+            handleLoader,
+            handleShowPassword,
+            handleShowConfirmPassword
         }}
     >
        {children} 
