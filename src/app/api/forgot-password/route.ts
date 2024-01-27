@@ -50,15 +50,10 @@ export async function POST(request: NextRequest) {
                     text: "Thank you for using our services! To reset the password of your account you will be directed to the create password page",
                     html: `
                     <p>Hello ${selectUser.firstName} ${selectUser.lastName}</p>
-                    <br>
                     <p>We received a request to reset your password for your account. If you did not make this request, please ignore this email.</p>
-                    <br>
                     <p>To set a new password, please click on the button below:</p>
-                    <br>
                     <a href=${link}>Reset Password</a>
-                    <br>
                     <p>This link will expire in 24 hours for security reasons. If you need help, please contact our support team.</p>
-                    <br>
                     <p>Thank you</p>
                     `
                 });
