@@ -8,9 +8,10 @@ import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 import Loader from '../components/Loader'
 import { useGlobalContext } from '../components/Context'
+import { LuEye, LuEyeOff  } from "react-icons/lu"
 
 const page = () => {
-  const { loading, handleLoader } = useGlobalContext();
+  const { loading, handleLoader, showPassword, handleShowPassword } = useGlobalContext();
   const [userData, setUserData] = useState({
     email: "",
     password: ""
@@ -77,13 +78,20 @@ const page = () => {
                 <label htmlFor="password" className="text-sm font-semibold">
                   Password
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  className="bg-white rounded-md p-2 text-sm font-medium outline-none"
-                  value={password}
-                  onChange={handleChange}
-                />
+                <div className='w-full flex items-center justify-between bg-white rounded-md p-2'>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    className="w-[inherit] text-sm font-medium outline-none"
+                    value={password}
+                    onChange={handleChange}
+                  />
+                  {showPassword ? (
+                    <LuEyeOff onClick={handleShowPassword} className="cursor-pointer" size={18}/>
+                  ) : (
+                    <LuEye onClick={handleShowPassword} className="cursor-pointer" size={18} />
+                  )}
+                </div>
               </div>
               <div className="flex items-start md:items-center flex-col md:flex-row justify-between gap-1 pb-3">
                 <div className="flex items-center gap-1">

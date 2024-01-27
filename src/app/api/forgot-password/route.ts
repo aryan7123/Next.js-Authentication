@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
         const req = await request.json();
         const { email } = req;
 
-        const selectUser = await User.find({ email: email });
+        const selectUser = await User.findOne({ email: email });
 
         if(!email) {
             return NextResponse.json({ message: "Email is required" });
@@ -21,9 +21,18 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ message: "Email does'nt exist" });
         }
         else {
-            const otp = Math.floor(Math.random() * 1000000);
-            const updateUser = await User.findOneAndUpdate({ verification_code: otp });
-            const { firstName, lastName } = updateUser;
+            function generateToken(length: any) {
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                let token = '';
+                for (let i = 0; i < length; i++) {
+                    token += characters.charAt(Math.floor(Math.random() * characters.length));
+                }
+                return token;
+            }
+            
+            const token = generateToken(40);
+            const updateToken = await User.findOneAndUpdate({ reset_password_token: token });
+            const link = `http://localhost:3000/create-password?token=${token}`;
             const transporter = nodemailer.createTransport({
                 host: "smtp.zoho.com",
                 port: 465,
@@ -37,18 +46,20 @@ export async function POST(request: NextRequest) {
                 const info = await transporter.sendMail({
                     from: process.env.MAIL_USERNAME,
                     to: email,
-                    subject: "Password Reset OTP Verification",
-                    text: "Thank you for using our services! To reset the password of your account, we require you to verify your identity with a one-time password (OTP).<br>",
+                    subject: "Reset Your Password",
+                    text: "Thank you for using our services! To reset the password of your account you will be directed to the create password page",
                     html: `
-                    Dear ${firstName} ${lastName},
+                    <p>Hello ${selectUser.firstName} ${selectUser.lastName}</p>
                     <br>
-                    <p>Please enter this OTP on the <a href="#">verification page</a> to complete the process. Note that this OTP is valid for a limited time period.</p>
+                    <p>We received a request to reset your password for your account. If you did not make this request, please ignore this email.</p>
                     <br>
-                    Your OTP: ${otp}
+                    <p>To set a new password, please click on the button below:</p>
                     <br>
-                    If you did not request a password reset, please ignore this email.
+                    <a href=${link}>Reset Password</a>
                     <br>
-                    Thank you for using our service.
+                    <p>This link will expire in 24 hours for security reasons. If you need help, please contact our support team.</p>
+                    <br>
+                    <p>Thank you</p>
                     `
                 });
             }
