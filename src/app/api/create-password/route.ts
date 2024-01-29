@@ -6,7 +6,15 @@ Connection();
 
 export async function name(request: NextRequest) {
     try {
-        
+        const req = await request.json();
+        const { password, confirmPassword } = req;
+
+        if(!password || !confirmPassword) {
+            return NextResponse.json({ message: "All the fields are required" });
+        }
+        else if() {
+
+        }
     } catch (error) {
         console.error(error);
     }

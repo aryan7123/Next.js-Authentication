@@ -11,7 +11,7 @@ import { useGlobalContext } from '../components/Context'
 import { LuEye, LuEyeOff  } from "react-icons/lu";
 
 const page = () => {
-  const { loading, handleLoader, showPassword, showConfirmPassword, handleShowPassword, handleShowConfirmPassword} = useGlobalContext();
+  const { loading, handleLoader, showPassword, showConfirmPassword, handleShowPassword, handleShowConfirmPassword } = useGlobalContext();
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",

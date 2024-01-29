@@ -6,14 +6,15 @@ import { useRouter } from 'next/navigation'
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 import Loader from '../components/Loader'
+import { LuEye, LuEyeOff  } from "react-icons/lu";
 import { useGlobalContext } from '../components/Context'
 
-const page = () => {
-  const { loading, handleLoader } = useGlobalContext();
+const page = ({ params } : { params: { token: string } }) => {
+  const { loading, handleLoader, showPassword, showConfirmPassword, handleShowPassword, handleShowConfirmPassword } = useGlobalContext();
   const [passwordData, setPasswordData] = useState({
     password: "",
     confirmPassword: ""
-  });
+  })
   const router = useRouter();
 
   const { password, confirmPassword } = passwordData;
@@ -49,28 +50,42 @@ const page = () => {
             </h3>
             <form className="p-4">
               <div className="flex flex-col gap-2 mb-3">
-                <label htmlFor="email" className="text-sm font-semibold">
+              <label htmlFor="password" className="text-sm font-semibold">
                   Password
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  className="bg-white rounded-md p-2 text-sm font-medium outline-none"
-                  value={password}
-                  onChange={handleChange}
-                />
+                <div className='w-full flex items-center justify-between bg-white rounded-md p-2'>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    className="w-[inherit] text-sm font-medium outline-none"
+                    value={password}
+                    onChange={handleChange}
+                  />
+                  {showPassword ? (
+                    <LuEyeOff onClick={handleShowPassword} className="cursor-pointer" size={18}/>
+                  ) : (
+                    <LuEye onClick={handleShowPassword} className="cursor-pointer" size={18} />
+                  )}
+                </div>
               </div>
               <div className="flex flex-col gap-2 mb-3">
-                <label htmlFor="password" className="text-sm font-semibold">
+              <label htmlFor="confirmPassword" className="text-sm font-semibold">
                   Confirm Password
                 </label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  className="bg-white rounded-md p-2 text-sm font-medium outline-none"
-                  value={confirmPassword}
-                  onChange={handleChange}
-                />
+                <div className='w-full flex items-center justify-between bg-white rounded-md p-2'>
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    className="w-[inherit] text-sm font-medium outline-none"
+                    value={confirmPassword}
+                    onChange={handleChange}
+                  />
+                   {showConfirmPassword ? (
+                    <LuEyeOff onClick={handleShowConfirmPassword} className="cursor-pointer" size={18}/>
+                  ) : (
+                    <LuEye onClick={handleShowConfirmPassword} className="cursor-pointer" size={18} />
+                  )}
+                </div>
               </div>
               <button
                 type="button"
