@@ -9,19 +9,15 @@ import { useGlobalContext } from '../components/Context'
 
 const page = () => {
     const { loading, handleLoader } = useGlobalContext();
-    const [emailData, setEmailData] = useState({
-        email: ""
-    });
-    const { email } = emailData;
+    const [email, setEmail] = useState("");
 
     const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        setEmailData({ ...emailData, [name]: value });
+        setEmail(e.target.value);
     }
 
     const handleSendEmail = async () => {
         try {
-            const res = await axios.post("/api/forgot-password", emailData);
+            const res = await axios.post("/api/forgot-password", { email });
             if (res.data.message === "Mail sent to your email address") {
                 toast.success(res.data.message, {
                     position: "top-right"

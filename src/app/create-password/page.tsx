@@ -5,16 +5,17 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
-import Loader from '../components/Loader'
+import Loader from '@/app/components/Loader'
 import { LuEye, LuEyeOff  } from "react-icons/lu";
-import { useGlobalContext } from '../components/Context'
+import { useGlobalContext } from '@/app/components/Context'
 
-const page = ({ params } : { params: { token: string } }) => {
+const page = () => {
   const { loading, handleLoader, showPassword, showConfirmPassword, handleShowPassword, handleShowConfirmPassword } = useGlobalContext();
   const [passwordData, setPasswordData] = useState({
     password: "",
     confirmPassword: ""
-  })
+  });
+  const [token, setToken] = useState("");
   const router = useRouter();
 
   const { password, confirmPassword } = passwordData;
@@ -32,6 +33,13 @@ const page = ({ params } : { params: { token: string } }) => {
       console.error(error);
     }
   }
+
+  const resetId = window.location.search.split(' ');
+  console.log(resetId);
+
+  // useEffect(() => {
+    
+  // }, []);
 
   useEffect(() => {
     handleLoader();

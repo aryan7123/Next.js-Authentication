@@ -29,9 +29,9 @@ export async function POST(request: NextRequest) {
                 }
                 return token;
             }
-            
+
             const token = generateToken(40);
-            const updateToken = await User.findOneAndUpdate({ reset_password_token: token });
+            const updateToken = await User.updateOne({ reset_password_token: token });
             const link = `http://localhost:3000/create-password?token=${token}`;
             const transporter = nodemailer.createTransport({
                 host: "smtp.zoho.com",
@@ -39,8 +39,8 @@ export async function POST(request: NextRequest) {
                 secure: true,
                 auth: {
                   user: process.env.MAIL_USERNAME,
-                  pass: process.env.MAIL_PASSWORD,
-                },
+                  pass: process.env.MAIL_PASSWORD
+                }
             });
             async function main() {
                 const info = await transporter.sendMail({
