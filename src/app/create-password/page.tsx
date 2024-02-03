@@ -15,7 +15,7 @@ const page = () => {
     password: "",
     confirmPassword: ""
   });
-  const [token, setToken] = useState("");
+  const [resetId, setResetId] = useState('');
   const router = useRouter();
 
   const { password, confirmPassword } = passwordData;
@@ -27,19 +27,21 @@ const page = () => {
 
   const handleCreatePassword = async() => {
     try {
-      const res = await axios.post("/api/create-password", passwordData);
+      const res = await axios.post("/api/create-password", { password, resetId });
       console.log(res);
     } catch (error) {
       console.error(error);
     }
   }
 
-  const resetId = window.location.search.split(' ');
-  console.log(resetId);
-
-  // useEffect(() => {
-    
-  // }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const resetTokenArr = window.location.search.split('?')[1];
+      const resetId = resetTokenArr ? resetTokenArr.split('=')[1] : '';
+      setResetId(resetId);
+      console.log(resetId);
+    }
+  }, []);
 
   useEffect(() => {
     handleLoader();
