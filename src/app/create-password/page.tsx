@@ -27,8 +27,20 @@ const page = () => {
 
   const handleCreatePassword = async() => {
     try {
-      const res = await axios.post("/api/create-password", { password, resetId });
-      console.log(res);
+      const res = await axios.post("/api/create-password", { password, confirmPassword, resetId });
+      if(res.data.message === "Password updated successfully") {
+        toast.success(res.data.message, {
+          position: "top-right"
+        });
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
+      }
+      else {
+        toast.error(res.data.message, {
+          position: "top-right"
+        });
+      }
     } catch (error) {
       console.error(error);
     }
@@ -39,7 +51,6 @@ const page = () => {
       const resetTokenArr = window.location.search.split('?')[1];
       const resetId = resetTokenArr ? resetTokenArr.split('=')[1] : '';
       setResetId(resetId);
-      console.log(resetId);
     }
   }, []);
 
