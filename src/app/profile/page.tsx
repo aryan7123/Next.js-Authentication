@@ -23,6 +23,11 @@ const page = () => {
         });
         router.push("/login");
       }
+      else {
+        toast.error(res.data.message, {
+          position: "top-right"
+        });
+      }
     } catch (error) {
       console.log(error);
     }
