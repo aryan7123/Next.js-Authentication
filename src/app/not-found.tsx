@@ -1,11 +1,17 @@
 import Link from 'next/link'
- 
+import Image from 'next/image'
+
 export default function NotFound() {
   return (
-    <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
-    </div>
+    <>
+      <div className='w-full h-full'>
+        <Image 
+          src="/preview.jpg"
+          alt='404 not found'
+          fill={true}
+          className='object-contain'
+        />
+      </div> 
+    </>
   )
 }
