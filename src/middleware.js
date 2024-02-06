@@ -14,7 +14,6 @@ export async function middleware(request) {
     "/admin/login",
   ].includes(path);
 
-  // Define protected paths for regular users and admins
   const isUserProtectedPath = path === "/profile";
   const isAdminProtectedPath = path === "/admin/dashboard";
 
