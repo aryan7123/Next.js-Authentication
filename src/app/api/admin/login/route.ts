@@ -28,7 +28,6 @@ export async function POST(request: NextRequest) {
             response.cookies.set("admin_token", token, { httpOnly: true });
             return response;
         }
-
     } catch (error) {
         console.log(error);
     }
