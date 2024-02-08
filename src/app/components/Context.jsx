@@ -10,6 +10,11 @@ const AppProvider = ({ children }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [adminDetails, setAdminDetails] = useState([]);
+    const [openSidebar, setOpenSidebar] = useState(false);
+
+    const handleOpenSidebar = () => {
+        setOpenSidebar(!openSidebar);
+    }
 
     const getAdminDetails = async () => {
         try {
@@ -41,7 +46,9 @@ const AppProvider = ({ children }) => {
             showPassword,
             showConfirmPassword,
             adminDetails,
+            openSidebar,
             getAdminDetails,
+            handleOpenSidebar,
             setLoading,
             handleLoader,
             handleShowPassword,
