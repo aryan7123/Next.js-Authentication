@@ -62,6 +62,34 @@ const page = () => {
                     <span className='text-sm font-medium text-gray-400'>Total visits</span>
                   </div>
                 </div>
+                <div className='w-full mt-4 rounded-md flex flex-col md:flex-row gap-3 items-center justify-between'>
+                  <div className='w-[inherit] md:w-1/2 border border-gray-200 rounded-md p-6'>
+                    <h3 className="text-gray-600 font-semibold text-base">Total Revenue</h3>
+                    <div className="flex items-center justify-center gap-6 mt-4">
+                      <div className='flex items-center justify-center gap-2'>
+                        <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+                        <span className='text-sm font-medium text-gray-500'>Series A</span>
+                      </div>
+                      <div className='flex items-center justify-center gap-2'>
+                        <div className="w-4 h-4 rounded-full bg-gray-500"></div>
+                        <span className='text-sm font-medium text-gray-500'>Series B</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='w-[inherit] md:w-1/2 border border-gray-200 rounded-md p-6'>
+                    <h3 className="text-gray-600 font-semibold text-base">Sales Analytics</h3>
+                    <div className="flex items-center justify-center gap-6 mt-4">
+                      <div className='flex items-center justify-center gap-2'>
+                        <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+                        <span className='text-sm font-medium text-gray-500'>Mobiles</span>
+                      </div>
+                      <div className='flex items-center justify-center gap-2'>
+                        <div className="w-4 h-4 rounded-full bg-blue-300"></div>
+                        <span className='text-sm font-medium text-gray-500'>Tablets</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
