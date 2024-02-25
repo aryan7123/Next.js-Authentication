@@ -5,7 +5,7 @@ Connection();
 
 export async function GET() {
     try {
-        const response = NextResponse.json({ message: "Logout Successful" });
+        const response = NextResponse.json({ message: "Logout Successfull" });
         response.cookies.set("admin_token", "", { httpOnly: true });
         return response;
     } catch (error) {
