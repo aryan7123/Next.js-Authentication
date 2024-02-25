@@ -29,6 +29,7 @@ const Navbar = () => {
               <CiLock size={18}/>
               <span className="text-sm text-gray-500 font-semibold">Lock Screen</span>
             </button>
+            <hr className="w-full border border-gray-200 mt-3"/>
             <button className="w-full flex items-center justify-start gap-3 hover:bg-gray-100 py-3 px-6">
               <CiLogout size={18}/>
               <span className="text-sm text-gray-500 font-semibold">Logout</span>
