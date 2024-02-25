@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Navbar = () => {
   const router = useRouter();
-  const { adminDetails, handleOpenSidebar, openDropdown, handleOpenDropdown } = useGlobalContext();
+  const { adminDetails, handleOpenSidebar, openDropdown, handleOpenDropdown, darkMode, handleDarkMode } = useGlobalContext();
 
   const { firstName, lastName, email, password } = adminDetails;
 
@@ -93,8 +93,8 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button type="button" className="text-gray-700">
-              <HiOutlineMoon size={22} />
+            <button type="button" onClick={handleDarkMode} className="text-gray-700">
+              {darkMode ? <HiOutlineSun size={22} /> : <HiOutlineMoon size={22}/>}
             </button>
             <button type="button" className="text-gray-700">
               <HiOutlineBell size={22} />

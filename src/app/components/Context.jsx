@@ -12,6 +12,11 @@ const AppProvider = ({ children }) => {
     const [adminDetails, setAdminDetails] = useState([]);
     const [openSidebar, setOpenSidebar] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(false);
+    const [darkMode, setDarkMode] = useState(false);
+    
+    const handleDarkMode = () => {
+        setDarkMode(!darkMode);
+    }
 
     const handleOpenSidebar = () => {
         setOpenSidebar(!openSidebar);
@@ -53,6 +58,8 @@ const AppProvider = ({ children }) => {
             adminDetails,
             openSidebar,
             openDropdown,
+            darkMode,
+            handleDarkMode,
             handleOpenDropdown,
             getAdminDetails,
             handleOpenSidebar,
