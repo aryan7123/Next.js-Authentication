@@ -3,15 +3,39 @@ import Image from "next/image";
 
 import { RiMenuFill, RiSearchLine } from "react-icons/ri";
 import { HiOutlineMoon, HiOutlineSun, HiOutlineBell } from "react-icons/hi";
+import { CiUser, CiSettings, CiLock, CiLogout } from "react-icons/ci";
 
 const Navbar = () => {
-  const { adminDetails, handleOpenSidebar } = useGlobalContext();
+  const { adminDetails, handleOpenSidebar, openDropdown, handleOpenDropdown } = useGlobalContext();
 
   const { firstName, lastName, email, password } = adminDetails;
 
   return (
     <>
       <nav className="bg-[#f3f4f6] w-full z-30 sticky top-0 left-0">
+        {/* dropdown menu */}
+        <div className={`bg-white absolute rounded-md ${openDropdown ? 'opacity-100' : 'opacity-0'} border-gray-200 border top-[90%] right-[10%] shadow-md transition-opacity duration-100`}>
+          <h4 className="text-gray-600 py-3 pl-6 font-semibold">Welcome !</h4>
+          <ul className="flex flex-col items-start justify-start">
+            <button className="w-full flex items-center justify-start gap-3 hover:bg-gray-100 py-3 px-6">
+              <CiUser size={18}/>
+              <span className="text-sm text-gray-500 font-semibold">My Account</span>
+            </button>
+            <button className="w-full flex items-center justify-start gap-3 hover:bg-gray-100 py-3 px-6">
+              <CiSettings size={18}/>
+              <span className="text-sm text-gray-500 font-semibold">Settings</span>
+            </button>
+            <button className="w-full flex items-center justify-start gap-3 hover:bg-gray-100 py-3 px-6">
+              <CiLock size={18}/>
+              <span className="text-sm text-gray-500 font-semibold">Lock Screen</span>
+            </button>
+            <button className="w-full flex items-center justify-start gap-3 hover:bg-gray-100 py-3 px-6">
+              <CiLogout size={18}/>
+              <span className="text-sm text-gray-500 font-semibold">Logout</span>
+            </button>
+          </ul>
+        </div>
+        {/* dropdown menu */}
         <div className="max-w-7xl mx-auto p-6 flex items-center justify-between">
           <div className="flex items-center gap-5">
             <div className="flex items-center gap-3 md:gap-0">
@@ -45,6 +69,7 @@ const Navbar = () => {
             <button
               type="button"
               className="flex items-center justify-center gap-2"
+              onClick={handleOpenDropdown}
             >
               <Image
                 src="/teamwork.png"
@@ -52,7 +77,7 @@ const Navbar = () => {
                 height={35}
                 alt="teamwork"
               />
-              <span className="text-gray-500 hidden md:block text-xs font-semibold">
+              <span className="text-gray-500 hidden md:block text-sm font-semibold">
                 {firstName}
               </span>
             </button>
