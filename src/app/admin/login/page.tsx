@@ -38,7 +38,7 @@ const page = () => {
         });
         setTimeout(() => {
           router.push("/admin/dashboard");
-        }, 1000);
+        }, 500);
       }
     } catch (error) {
       console.log(error);

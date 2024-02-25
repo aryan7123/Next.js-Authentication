@@ -63,7 +63,7 @@ const page = () => {
                   </div>
                 </div>
                 <div className='w-full mt-4 rounded-md flex flex-col md:flex-row gap-3 items-center justify-between'>
-                  <div className='w-[inherit] md:w-1/2 border border-gray-200 rounded-md p-6'>
+                  <div className='w-[inherit] md:w-1/2 border border-gray-200 rounded-md p-6 overflow-hidden'>
                     <h3 className="text-gray-600 font-semibold text-base">Total Revenue</h3>
                     <div className="flex items-center justify-center gap-6 mt-4">
                       <div className='flex items-center justify-center gap-2'>
