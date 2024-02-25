@@ -11,9 +11,14 @@ const AppProvider = ({ children }) => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [adminDetails, setAdminDetails] = useState([]);
     const [openSidebar, setOpenSidebar] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState(false);
 
     const handleOpenSidebar = () => {
         setOpenSidebar(!openSidebar);
+    }
+
+    const handleOpenDropdown = () => {
+        setOpenDropdown(!openDropdown);
     }
 
     const getAdminDetails = async () => {
@@ -47,6 +52,8 @@ const AppProvider = ({ children }) => {
             showConfirmPassword,
             adminDetails,
             openSidebar,
+            openDropdown,
+            handleOpenDropdown,
             getAdminDetails,
             handleOpenSidebar,
             setLoading,
