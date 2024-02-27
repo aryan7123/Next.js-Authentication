@@ -87,7 +87,7 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Search..."
-                className="w-[inherit] bg-transparent text-sm font-medium text-gray-500 md:text-white outline-none"
+                className="w-[inherit] bg-transparent text-sm font-medium text-gray-500 dark:text-white outline-none"
               />
               <RiSearchLine size={16} className="text-gray-700 dark:text-gray-400" />
             </div>

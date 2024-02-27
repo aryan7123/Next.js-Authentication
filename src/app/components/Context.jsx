@@ -15,14 +15,11 @@ const AppProvider = ({ children }) => {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
+    if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
       setTheme("dark");
       document.documentElement.classList.add("dark");
-    } else {
+    } 
+    else {
       setTheme("light");
       document.documentElement.classList.remove("dark");
     }
